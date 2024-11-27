@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 
 import styles from "./Form.module.css";
 import Button from "./Button";
-import BackButton from "./BackButton";
 import { useURLPosition } from "../hooks/useURLPosition";
 import Message from "./Message";
 import Spinner from "./Spinner";
 import CountryFlag from "./CountryFlag";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -29,12 +29,31 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
+  const [id, setId] = useState(null);
   const [isGeoLoading, setIsGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState("");
 
-  function handleSubmit(e) {
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
     e.preventDefault();
+    await fetch("http://localhost:9000/cities", {
+      method: "POST",
+      body: JSON.stringify({
+        cityName: cityName,
+        country: country,
+        emoji: emoji,
+        date: date.toDateString(),
+        notes: notes,
+        position: {
+          lat: lat,
+          lng: lng,
+        },
+      }),
+    });
+    navigate("/app/cities");
   }
+
   useEffect(
     function () {
       if (!lat && !lng) return;
@@ -56,6 +75,7 @@ function Form() {
           setCityName(data.city || data.locality || "");
           setCountry(data.countryName || "");
           setEmoji(data.countryCode);
+          setId(data.id);
         } catch (err) {
           setGeoError(err.message);
         } finally {
@@ -111,7 +131,15 @@ function Form() {
 
       <div className={styles.buttons}>
         <Button type="primary">Add</Button>
-        <BackButton />
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/app");
+          }}
+          type="back"
+        >
+          &larr; Back
+        </Button>
       </div>
     </form>
   );
