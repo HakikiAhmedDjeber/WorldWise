@@ -37,15 +37,15 @@
       }
     },
     {
-      "id": "1607",
-      "cityName": "Gulf of Hammamet",
-      "country": "Tunisia",
-      "emoji": "TN",
-      "date": "2024-11-30T06:45:25.638Z",
+      "id": "e41b",
+      "cityName": "Saint-Pierre-de-Mesage",
+      "country": "France",
+      "emoji": "FR",
+      "date": "2024-11-30T08:00:47.123Z",
       "notes": "",
       "position": {
-        "lat": "36.390702574998436",
-        "lng": "10.623779296875002"
+        "lat": "45.045147303161535",
+        "lng": "5.77880859375"
       }
     }
   ]
