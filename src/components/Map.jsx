@@ -13,6 +13,7 @@ import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
 import { useURLPosition } from "../hooks/useURLPosition";
+import CountryFlag from "./CountryFlag";
 
 function Map() {
   const { cities } = useCities();
@@ -61,7 +62,9 @@ function Map() {
             position={[city.position.lat, city.position.lng]}
             key={city.id}
           >
-            <Popup>{city.cityName}</Popup>
+            <Popup>
+              <CountryFlag countryCode={city.emoji} size={24} /> {city.cityName}
+            </Popup>
           </Marker>
         ))}
         <ChangeCenter position={mapPosition} />

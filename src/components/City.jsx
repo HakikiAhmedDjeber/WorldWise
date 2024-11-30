@@ -1,9 +1,10 @@
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./City.module.css";
 import { useCities } from "../contexts/CitiesContext";
 import { useEffect } from "react";
 import Spinner from "./Spinner";
 import BackButton from "./BackButton";
+import CountryFlag from "./CountryFlag";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -39,7 +40,7 @@ function City() {
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{emoji}</span> {cityName}
+          <CountryFlag countryCode={emoji} size={32} /> {cityName}
         </h3>
       </div>
 

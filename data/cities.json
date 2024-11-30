@@ -37,15 +37,15 @@
       }
     },
     {
-      "id": "e41b",
-      "cityName": "Saint-Pierre-de-Mesage",
-      "country": "France",
-      "emoji": "FR",
-      "date": "2024-11-30T08:00:47.123Z",
-      "notes": "",
+      "id": "26ce",
+      "cityName": "Sidi Bel Abbes",
+      "country": "Algeria",
+      "emoji": "DZ",
+      "date": "2024-11-30T10:16:46.227Z",
+      "notes": "wee 3ibs\n",
       "position": {
-        "lat": "45.045147303161535",
-        "lng": "5.77880859375"
+        "lat": "35.18985782791418",
+        "lng": "-0.6372070312500001"
       }
     }
   ]
