@@ -15,15 +15,7 @@ const formatDate = (date) =>
 
 function City() {
   const { id } = useParams();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const { currentCity, getCity, isLoading } = useCities();
-
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
-
-  console.log(id);
 
   // TEMP DATA
   // const currentCity = {

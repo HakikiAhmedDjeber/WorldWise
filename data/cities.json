@@ -34,7 +34,67 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 98443197
+      "id": "98443197"
+    },
+    {
+      "id": "8614",
+      "cityName": "Sidi Bel Abbes",
+      "country": "Algeria",
+      "emoji": "DZ",
+      "date": "Sat Nov 30 2024",
+      "notes": "ici c'est khayi",
+      "position": {
+        "lat": "35.182977332012804",
+        "lng": "-0.6289672851562501"
+      }
+    },
+    {
+      "id": "a7d0",
+      "cityName": "Monaco",
+      "country": "Monaco",
+      "emoji": "MC",
+      "date": "2024-11-30T06:26:51.172Z",
+      "notes": "monaco",
+      "position": {
+        "lat": "43.63166205297966",
+        "lng": "7.465362994109754"
+      }
+    },
+    {
+      "id": "67b3",
+      "cityName": "El Jadida",
+      "country": "Morocco",
+      "emoji": "MA",
+      "date": "2024-11-30T06:33:58.516Z",
+      "notes": "here is ilyas elmalki ",
+      "position": {
+        "lat": "33.23688198260945",
+        "lng": "-8.496804547117133"
+      }
+    },
+    {
+      "id": "f0cd",
+      "cityName": "Oran",
+      "country": "Algeria",
+      "emoji": "DZ",
+      "date": "2024-11-30T06:39:35.852Z",
+      "notes": "wahreen",
+      "position": {
+        "lat": "35.68633875098137",
+        "lng": "-0.6427001953125001"
+      }
+    },
+    {
+      "id": "1607",
+      "cityName": "Gulf of Hammamet",
+      "country": "Tunisia",
+      "emoji": "TN",
+      "date": "2024-11-30T06:45:25.638Z",
+      "notes": "",
+      "position": {
+        "lat": "36.390702574998436",
+        "lng": "10.623779296875002"
+      }
     }
   ]
 }

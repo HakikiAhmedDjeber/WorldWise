@@ -11,6 +11,7 @@ import CountryFlag from "./CountryFlag";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import { useCities } from "../contexts/CitiesContext";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -24,6 +25,9 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
   const [lat, lng] = useURLPosition();
+  const { createCity, isLoading } = useCities();
+  const navigate = useNavigate();
+
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
@@ -33,24 +37,25 @@ function Form() {
   const [isGeoLoading, setIsGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState("");
 
-  const navigate = useNavigate();
-
   async function handleSubmit(e) {
     e.preventDefault();
-    await fetch("http://localhost:9000/cities", {
-      method: "POST",
-      body: JSON.stringify({
-        cityName: cityName,
-        country: country,
-        emoji: emoji,
-        date: date.toDateString(),
-        notes: notes,
-        position: {
-          lat: lat,
-          lng: lng,
-        },
-      }),
-    });
+
+    if (!cityName || !date) return;
+
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: {
+        lat,
+        lng,
+      },
+    };
+
+    await createCity(newCity);
+
     navigate("/app/cities");
   }
 
@@ -93,7 +98,10 @@ function Form() {
   if (geoError) return <Message message={geoError} />;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
