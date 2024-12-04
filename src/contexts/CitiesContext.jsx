@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
 const BASE_URL = "http://localhost:9000";
 
@@ -63,17 +69,20 @@ function CitiesProvider({ children }) {
     getCities();
   }, []);
 
-  async function getCity(id) {
-    if (id == currentCity.id) return;
-    dispatch({ type: "loading" });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch {
-      dispatch({ type: "rejected", payload: "Error of getting city ..." });
-    }
-  }
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (id == currentCity.id) return;
+      dispatch({ type: "loading" });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch {
+        dispatch({ type: "rejected", payload: "Error of getting city ..." });
+      }
+    },
+    [currentCity.id]
+  );
 
   async function createCity(city) {
     dispatch({ type: "loading" });
@@ -92,6 +101,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "rejected", payload: "Error of creating a city ..." });
     }
   }
+
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
